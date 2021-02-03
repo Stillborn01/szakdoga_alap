@@ -7,6 +7,10 @@ ATank* ATankAIController::GetControlledTank() const {
 	return Cast<ATank>(GetPawn());
 }
 
+ATank* ATankAIController::GetPlayerTank() const {
+	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+}
+
 void ATankAIController::BeginPlay() {
 	Super::BeginPlay();
 
@@ -30,6 +34,12 @@ void ATankAIController::BeginPlay() {
 	UE_LOG(LogTemp, Warning, TEXT("AIController BeginPlay"));
 }
 
-ATank* ATankAIController::GetPlayerTank() const {
-	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	//UE_LOG(LogTemp, Warning, TEXT("%s is aiming at %s"), *(GetControlledTank()->GetName()), *(GetPlayerTank()->GetName()));
+	if (GetPlayerTank()) {
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+	}
 }
+
