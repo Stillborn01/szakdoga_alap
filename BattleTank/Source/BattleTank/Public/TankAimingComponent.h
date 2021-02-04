@@ -23,6 +23,8 @@ public:
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
+	
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -30,5 +32,5 @@ protected:
 private:	
 	UStaticMeshComponent* Barrel = nullptr;
 		
-
+	void MoveBarrelTowards(FVector AimDirection);
 };
