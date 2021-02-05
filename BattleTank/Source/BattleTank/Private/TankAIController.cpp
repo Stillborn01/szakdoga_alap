@@ -37,7 +37,6 @@ void ATankAIController::BeginPlay() {
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//UE_LOG(LogTemp, Warning, TEXT("%s is aiming at %s"), *(GetControlledTank()->GetName()), *(GetPlayerTank()->GetName()));
 	if (GetPlayerTank()) {
 		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
 	}
