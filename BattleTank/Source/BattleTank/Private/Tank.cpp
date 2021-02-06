@@ -3,6 +3,7 @@
 
 #include "Tank.h"
 #include "TankAimingComponent.h"
+#include "..\Public\Tank.h"
 
 
 
@@ -41,4 +42,8 @@ void ATank::SetBarrelReference(UTankBarrel* BarrelToSet) {
 
 void ATank::SetTurretReference(UTankTurret* TurretToSet){
 	TankAimingComponent->SetTurretReference(TurretToSet);
+}
+
+void ATank::Fire(){
+	UE_LOG(LogTemp, Warning, TEXT("Fire"));
 }
