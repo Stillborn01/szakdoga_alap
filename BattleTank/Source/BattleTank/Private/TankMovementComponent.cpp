@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright by Nagy Dávid 2021
 
 
 #include "TankMovementComponent.h"
@@ -26,7 +26,9 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
 	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
 
-	float Outparam = FVector::DotProduct(TankForward, AIForwardIntention);
-	IntendMoveForward(Outparam);
+	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
+	auto RotateThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
+	IntendMoveForward(ForwardThrow);
+	IntendTurnRight(RotateThrow);
 	//UE_LOG(LogTemp, Warning, TEXT("RequestDirectMove by %s with velocity of %s"), *Name, *MoveString);
 }
