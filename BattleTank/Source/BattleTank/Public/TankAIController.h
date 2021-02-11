@@ -17,4 +17,6 @@ private:
     virtual void Tick(float DeltaTime) override;
 
     virtual void BeginPlay() override;
+
+	float AcceptanceRadius = 3000;
 };
