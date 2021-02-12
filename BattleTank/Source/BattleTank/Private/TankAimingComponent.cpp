@@ -41,6 +41,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
 	if (!Barrel) { return; }
+
 	FVector OutLaunchVelocity;
 	FVector StartingLocation = Barrel->GetSocketLocation(FName("Projectile"));
 	//TArray<AActor*> ActorsToIgnore; // Needed if wants to draw projectile tracelines
