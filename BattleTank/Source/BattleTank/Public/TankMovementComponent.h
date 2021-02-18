@@ -20,7 +20,7 @@ public:
 	void Initialize(UTankTrack* LeftToSet, UTankTrack* RightToSet);
 
 	UFUNCTION(BlueprintCallable, Category = "Input")
-		void IntendMoveForward(float Throw);
+	void IntendMoveForward(float Throw);
 
 	UFUNCTION(BlueprintCallable, Category = "Input")
 	void IntendTurnRight(float Throw);
