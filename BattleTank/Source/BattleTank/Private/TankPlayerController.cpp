@@ -8,6 +8,7 @@
 
 void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("DONKEY: ATankPlayerController BeginPlay called from C++"));
 }
 
 void ATankPlayerController::Tick(float DeltaTime) {

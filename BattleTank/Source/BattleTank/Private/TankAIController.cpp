@@ -6,6 +6,8 @@
 
 void ATankAIController::BeginPlay() {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("DONKEY: ATankAIController BeginPlay called from C++"))
+
 }
 
 void ATankAIController::Tick(float DeltaTime)
