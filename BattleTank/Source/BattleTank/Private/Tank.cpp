@@ -15,28 +15,22 @@ ATank::ATank()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-
-	auto Name = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("DONKEY: ATank constructor called from C++ on %s"), *Name);
-	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATank::BeginPlay() {
-	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 	Super::BeginPlay();
-	auto Name = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("DONKEY: ATank BeginPlay called from C++ on %s"), *Name);
 }
 
 void ATank::AimAt(FVector HitLocation) {
-	if (!TankAimingComponent) { return; }
+	if (!ensure(TankAimingComponent)) { return; }
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 	UE_LOG(LogTemp, Warning, TEXT("ATank AimAt works"));
 }
 
 void ATank::Fire(){
+	if (!ensure(Barrel)) { return; }
 	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-	if (Barrel && isReloaded)
+	if (isReloaded)
 	{
 		// Spawn a projectile at the socket location on the barrel
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(

@@ -25,8 +25,6 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-	
-
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
@@ -36,7 +34,7 @@ public:
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EAimingStatus AimingState = EAimingStatus::Aiming;
+	EAimingStatus AimingState = EAimingStatus::Locked;
 
 protected:
 	// Called when the game starts
