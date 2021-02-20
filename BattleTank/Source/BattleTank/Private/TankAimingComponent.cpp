@@ -40,7 +40,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
+void UTankAimingComponent::AimAt(FVector HitLocation) {
 	if (!ensure(Barrel)) { return; }
 	FVector OutLaunchVelocity;
 	FVector StartingLocation = Barrel->GetSocketLocation(FName("Projectile"));
@@ -51,7 +51,6 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
 		auto Time = GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("UTankAimingComponent AimAt works"));
 	}
 }
 
