@@ -38,17 +38,23 @@ public:
 	void Fire();
 
 	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EAimingStatus AimingState = EAimingStatus::Locked;
+	EAimingStatus AimingState = EAimingStatus::Reloading;
+
+	FVector AimDirection;
+
+	void MoveBarrelTowards(FVector AimDirection);
+
+	bool IsBarrelMoving();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
+
+
 private:	
 	// Sets default values for this component's properties
 	UTankAimingComponent();
-
-	void MoveBarrelTowards(FVector AimDirection);
 
 	UTankBarrel* Barrel = nullptr;
 	UTankTurret* Turret = nullptr;
