@@ -10,7 +10,8 @@ UENUM()
 enum class EAimingStatus : uint8 {
 	Reloading,
 	Aiming,
-	Locked
+	Locked,
+	OutOfAmmo
 };
 
 
@@ -37,8 +38,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void Fire();
 
-	UPROPERTY(BlueprintReadOnly, Category = "State")
-	EAimingStatus AimingState = EAimingStatus::Reloading;
+	EAimingStatus GetAimingState() const;
 
 	FVector AimDirection;
 
@@ -46,11 +46,15 @@ public:
 
 	bool IsBarrelMoving();
 
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+	int GetRoundsLeft() const;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-
+	UPROPERTY(BlueprintReadOnly, Category = "State")
+	EAimingStatus AimingState = EAimingStatus::Reloading;
 
 private:	
 	// Sets default values for this component's properties
@@ -69,4 +73,6 @@ private:
 	TSubclassOf<AProjectile> Projectile_BP;
 
 	double LastFireTime = 0;
+
+	int RoundsLeft = 3;
 };
