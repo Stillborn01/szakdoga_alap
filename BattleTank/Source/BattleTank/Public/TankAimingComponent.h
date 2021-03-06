@@ -71,7 +71,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AProjectile> Projectile_BP;
-
+		
 	double LastFireTime = 0;
 
 	int RoundsLeft = 3;
