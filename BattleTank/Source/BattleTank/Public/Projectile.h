@@ -30,8 +30,13 @@ private:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 
+	void OnTimerExpire();
+
 
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float DestroyDelay = 5.f;
 
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
 	UStaticMeshComponent* CollisionMesh = nullptr;
