@@ -38,16 +38,19 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float DestroyDelay = 5.f;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float ProjectileDamage = 20.f;
+
 	UPROPERTY(VisibleAnywhere, Category = "Setup")
 	UStaticMeshComponent* CollisionMesh = nullptr;
 
-	UPROPERTY(VisibleAnywhere, Category = "Setup")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UParticleSystemComponent* LaunchBlast = nullptr;
 
-	UPROPERTY(VisibleAnywhere, Category = "Setup")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UParticleSystemComponent* ImpactBlast = nullptr;
 
-	UPROPERTY(VisibleAnywhere, Category = "Setup")
+	UPROPERTY(VisibleAnywhere, Category = "Components")
 	URadialForceComponent* ExplosionForce = nullptr;
 	
 };
