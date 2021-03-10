@@ -1,6 +1,7 @@
 // Copyright by Nagy Dávid 2021
 
 #include "TankAIController.h"
+#include "Tank.h"
 #include "TankAimingComponent.h"
 
 
@@ -8,6 +9,7 @@ void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
 // Called every frame
 void ATankAIController::Tick(float DeltaTime)
 {
@@ -28,5 +30,19 @@ void ATankAIController::Tick(float DeltaTime)
 	if (AimingComponent->GetAimingState() == EAimingStatus::Locked) {
 		AimingComponent->Fire();
 	}
+}
+
+void ATankAIController::SetPawn(APawn* InPawn) {
+	Super::SetPawn(InPawn);
+	if (InPawn) {
+		auto PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank)) { return; }
+		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::OnPossessedDeath);
+	}
+}
+
+void ATankAIController::OnPossessedDeath() {
+	if (!GetPawn()) { return; }
+	GetPawn()->DetachFromControllerPendingDestroy();
 }
 

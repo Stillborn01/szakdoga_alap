@@ -5,15 +5,15 @@
 #include "..\Public\Tank.h"
 
 
-float ATank::GetHealthPercent() const
-{
-	return (float)CurrentHealth / (float)StartingHealth;
-}
-
 ATank::ATank()
 {
 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+}
+
+void ATank::BeginPlay() {
+	Super::BeginPlay();
+	CurrentHealth = StartingHealth;
 }
 
 float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) {
@@ -21,7 +21,14 @@ float ATank::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEve
 	int32 DamageToApply = FMath::Clamp(DamagePoints, 0, CurrentHealth);
 	
 	CurrentHealth -= DamageToApply;
-	UE_LOG(LogTemp, Warning, TEXT("DamageAmount = %f, DamageToApply = %i"), DamageAmount, DamageToApply)
+	if (CurrentHealth == 0) {
+		OnDeath.Broadcast();
+	}
 
 	return DamageToApply;
+}
+
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth / (float)StartingHealth;
 }
