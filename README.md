@@ -1,1 +1,1 @@
-# szakdoga_alap
+# szakdolgozat
